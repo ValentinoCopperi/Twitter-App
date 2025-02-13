@@ -57,12 +57,12 @@ const Sidebar: FC<Props> = ({ closeSheet, isLoggedIn }) => {
         ))}
       </ul>
 
-      <div className="mt-auto">
+      <div className="mt-auto mb-3">
         {isLoggedIn ? (
           <Button
             variant="link"
             className="w-full text-dark dark:text-white justify-start font-medium h-auto text-base py-3 xl:text-xl"
-            onClick={handleLogout} 
+            onClick={handleLogout}
             aria-label="Logout"
           >
             <LogOutIcon className="!size-8" />
@@ -80,6 +80,10 @@ const Sidebar: FC<Props> = ({ closeSheet, isLoggedIn }) => {
             </Button>
           </Link>
         )}
+        <div className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
+          <p className="font-light">Designed by</p>
+          <p className="font-semibold">Valentino Copperi</p>
+        </div>
       </div>
     </nav>
   );

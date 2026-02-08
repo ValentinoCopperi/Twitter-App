@@ -34,6 +34,8 @@ export default async function RootLayout({
       <body
         className={`${inter.className} antialiased`}
       >
+
+
         <Providers>
           <div>
             <div className="sticky top-0 z-50">
@@ -41,7 +43,7 @@ export default async function RootLayout({
             </div>
             <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-5 gap-4">
               <div className=" hidden lg:col-span-1 lg:block border-r border-border">
-                <div className="fixed left-[3%] h-screen ">
+                <div className="fixed left-[2%] h-screen ">
                   <Sidebar isLoggedIn={isLoggedIn}/>
                 </div>
               </div>
@@ -61,6 +63,8 @@ export default async function RootLayout({
             </div>
 
           </div>
+
+
         </Providers>
 
       </body>

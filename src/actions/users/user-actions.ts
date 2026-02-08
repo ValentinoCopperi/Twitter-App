@@ -5,6 +5,7 @@ import { createSession, deleteSession, updateSession } from "@/lib/session";
 import { loginFormSchema, LoginState, registerFormSchema, RegisterState } from "@/types/auth";
 import { User } from "@prisma/client";
 import { redirect } from "next/navigation";
+import bcrypt from "bcrypt";
 
 
 
@@ -194,11 +195,13 @@ export const registerAction = async (prevState: RegisterState, formData: FormDat
     }
 
     try {
+        const hashedPassword = await bcrypt.hash(password, 12);
+        
         const user = await prisma.user.create({
             data: {
                 email,
                 username,
-                password
+                password: hashedPassword
             }
         })
         await createSession({
@@ -252,7 +255,9 @@ export const loginAction = async (prevState: LoginState, formData: FormData): Pr
             return {error : "User does not exist"}
         }
 
-        if(user.password !== password){
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        
+        if(!passwordMatch){
             return {error : "Invalid password"}
         }
 

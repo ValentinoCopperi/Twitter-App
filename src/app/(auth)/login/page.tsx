@@ -62,7 +62,7 @@ const LoginPage = () => {
           {state?.message && <p className="text-green-500 text-sm">{state.message}</p>}
         </form>
 
-        <div className="my-6">
+        <div className="my-8">
           <Separator className="my-4" />
           <LoginButton content={"Login with google"}/>
         </div>

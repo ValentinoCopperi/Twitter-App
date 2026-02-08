@@ -91,15 +91,17 @@ export const nextAuthAuthentication = async (user: UserByNextAuth) => {
 
 
     try {
-
+        //check if the user is valid
         if (!user.id || !user.name || !user.email) return false;
 
+        //check if the user already exists
         const existingUser = await prisma.user.findUnique({
             where: {
                 email: user.email
             }
         })
 
+        //if the user exists, create a session for them
         if (existingUser) {
             await createSession({ id: existingUser.id, email: existingUser.email, username: existingUser.username, image: existingUser.image || "" })
             return existingUser;

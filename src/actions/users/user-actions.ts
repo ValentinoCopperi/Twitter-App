@@ -116,8 +116,10 @@ export const nextAuthAuthentication = async (user: UserByNextAuth) => {
             }
         })
 
+        //create a session for the new user
         await createSession({ id: newUser.id, email: newUser.email, username: newUser.username })
-
+        
+        //return the new user
         return newUser;
 
     } catch (error) {
